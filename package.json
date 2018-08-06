@@ -4,13 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "sls deploy"
+    "deploy": "sls deploy",
+    "deploy:function": "sls deploy function -f app",
+    "remove": "sls remove"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.286.2",
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "serverless-http": "^1.6.0"
   }

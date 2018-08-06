@@ -1,10 +1,26 @@
 service: serverless-todo
 
+custom:
+  tableName: 'todos-table-${self:provider.stage}'
+
 provider:
   name: aws
   runtime: nodejs8.10
   stage: dev
   region: ap-southeast-2
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - { "Fn::GetAtt": ["TodosDynamoDBTable", "Arn" ] }
+  environment:
+    TODOS_TABLE: ${self:custom.tableName}
 
 functions:
   app:
@@ -12,3 +28,21 @@ functions:
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
+
+resources:
+  Resources:
+    TodosDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: todoId
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: todoId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.tableName}
