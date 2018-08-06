@@ -1,5 +1,9 @@
 const express = require('express');
-const todos = require('./controllers/todos');
+const {
+  addTodo,
+  listTodos,
+  showTodo
+} = require('./controllers/todos');
 
 const router = express.Router();
 
@@ -8,8 +12,8 @@ router.get('/', function (req, res) {
 });
 
 // Todos
-router.get('/todos/:id', todos.show);
-router.post('/todos', todos.create);
-router.get('/todos', todos.index);
+router.get('/todos', listTodos);
+router.get('/todos/:id', showTodo);
+router.post('/todos', addTodo);
 
 module.exports = router;
