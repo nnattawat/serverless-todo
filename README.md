@@ -15,7 +15,7 @@ npm run db:create
 npm run start
 ```
 
-## Deploy
+## Deploy to AWS
 
 You will need to setup AWS credential in your local machine. In my case I put them in `~/.aws/credentials`.
 
@@ -36,12 +36,16 @@ You can destroy the stack by running:
 npm run destroy
 ```
 
-Checking cloud watch for the deploy function
+Checking cloud watch for the deployed function
 ```bash
 npm run log
 ```
 
-## Deploy multiple function for each path
+## Testing endpoint
+There is Postman script to test the endpoints. You can import files under `/postman` into Postman.
+Select `local` environment to test locally or select `dev` environment to test remote endpoints. Please update the `baseURL` to your API gateway endpoint.
+
+## Deploy multiple functions for different paths
 
 Currently, all endpoints under `/` are deployed into one function.
 This gives you benifit of preventing cold start in less frequently used path.

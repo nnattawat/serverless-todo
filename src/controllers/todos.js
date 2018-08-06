@@ -68,7 +68,7 @@ todosController.create = (req, res) => {
       completed,
       text,
       todoId
-    },
+    }
   };
 
   dynamoDb.put(params, (error) => {
