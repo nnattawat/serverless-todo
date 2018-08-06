@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "sls offline start",
     "db:create": "sls dynamodb install",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "log": "sls logs -f app -t",
+    "start": "sls offline start",
     "deploy": "sls deploy",
     "deploy:function": "sls deploy function -f app",
-    "remove": "sls remove"
+    "destroy": "sls remove"
   },
   "keywords": [],
   "author": "",

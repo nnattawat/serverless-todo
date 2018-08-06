@@ -1,20 +1,62 @@
-## Serverless API for todo app
+# Serverless API for todo app
+Deploy a lambda function that running express server.
 
-# Runing
+## Runing locally
 
 ```bash
+# install packages
 npm i
+
+# create local dynamodb table, run this once
+npm run db:create
+
+# start server
+# note that you need Java installed for running serverless-dynamodb-local
+npm run start
 ```
 
-# Deploy
+## Deploy
 
 You will need to setup AWS credential in your local machine. In my case I put them in `~/.aws/credentials`.
 
 ```bash
+# deploy stack
 npm run deploy
 ```
 
-You cab destroy the stack by running:
+Sometimes you only want to upload new source code for your function without changing your stack.
 ```bash
-npm run remove
+# update function's code
+npm run deploy:function
+```
+
+You can destroy the stack by running:
+```bash
+# remove stack
+npm run destroy
+```
+
+Checking cloud watch for the deploy function
+```bash
+npm run log
+```
+
+## Deploy multiple function for each path
+
+Currently, all endpoints under `/` are deployed into one function.
+This gives you benifit of preventing cold start in less frequently used path.
+However, it is not good for monitoring error and performance for each path.
+To do so, we can deploy the same code to another lambda function that handles specific path by changing in `serverless.yml` as the following:
+
+```yaml
+functions:
+  app:
+    handler: src/index.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+  listTodos:
+    handler: src/index.handler
+    events:
+      - http: 'GET /todos'
 ```
