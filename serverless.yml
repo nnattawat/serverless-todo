@@ -39,11 +39,11 @@ resources:
       Properties:
         AttributeDefinitions:
           -
-            AttributeName: todoId
+            AttributeName: id
             AttributeType: S
         KeySchema:
           -
-            AttributeName: todoId
+            AttributeName: id
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1

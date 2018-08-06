@@ -1,4 +1,5 @@
 const dynamoDb = require('../dynamodbClient');
+const uuid = require('uuid');
 const TODOS_TABLE = process.env.TODOS_TABLE;
 
 const todosController = {};
@@ -15,12 +16,8 @@ todosController.index = (req, res) => {
     }
 
     const todos = result.Items.map(item => {
-      const { todoId, text, completed } = item;
-      return {
-        todoId,
-        text,
-        completed
-      };
+      const { id, text, completed, createdAt, updatedAt } = item;
+      return { id, text, completed, createdAt, updatedAt };
     });
 
     res.json(todos);
@@ -31,8 +28,8 @@ todosController.show = (req, res) => {
   const params = {
     TableName: TODOS_TABLE,
     Key: {
-      todoId: req.params.todoId,
-    },
+      id: req.params.id,
+    }
   }
 
   dynamoDb.get(params, (error, result) => {
@@ -41,8 +38,8 @@ todosController.show = (req, res) => {
       res.status(400).json({ error: 'Could not get user' });
     }
     if (result.Item) {
-      const { todoId, text, completed } = result.Item;
-      res.json({ todoId, text, completed });
+      const { id, text, completed, createdAt, updatedAt } = result.Item;
+      res.json({ id, text, completed, createdAt, updatedAt });
     } else {
       res.status(404).json({ error: "Todo not found" });
     }
@@ -51,24 +48,24 @@ todosController.show = (req, res) => {
 
 todosController.create = (req, res) => {
   const {
-    completed = false,
-    text,
-    todoId
+    text
   } = req.body;
 
-  if (typeof todoId !== 'string') {
-    res.status(400).json({ error: '"todoId" must be a string' });
-  } else if (typeof text !== 'string') {
+  if (typeof text !== 'string') {
     res.status(400).json({ error: '"text" must be a string' });
   }
 
+  const todo = {
+    text,
+    completed: false,
+    id: uuid.v1(),
+    createdAt: new Date().getTime(),
+    updatedAt: new Date().getTime()
+  };
+
   const params = {
     TableName: TODOS_TABLE,
-    Item: {
-      completed,
-      text,
-      todoId
-    }
+    Item: todo
   };
 
   dynamoDb.put(params, (error) => {
@@ -77,11 +74,7 @@ todosController.create = (req, res) => {
       res.status(400).json({ error: 'Could not create user' });
     }
 
-    res.json({
-      completed,
-      todoId,
-      text
-    });
+    res.json(todo);
   });
 };
 

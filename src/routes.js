@@ -8,7 +8,7 @@ router.get('/', function (req, res) {
 });
 
 // Todos
-router.get('/todos/:todoId', todos.show);
+router.get('/todos/:id', todos.show);
 router.post('/todos', todos.create);
 router.get('/todos', todos.index);
 

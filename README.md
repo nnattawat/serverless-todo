@@ -1,5 +1,5 @@
 # Serverless API for todo app
-Deploy a lambda function that running express server.
+Deploy a lambda function that running Express server.
 
 ## Runing locally
 
