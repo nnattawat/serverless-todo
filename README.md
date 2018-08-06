@@ -66,3 +66,6 @@ functions:
     events:
       - http: 'GET /todos'
 ```
+
+## TODO
+- [ ] Add Authorizers to the API gateway (maybe use JWT)
