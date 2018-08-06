@@ -1,7 +1,5 @@
+const dynamoDb = require('../dynamodbClient');
 const TODOS_TABLE = process.env.TODOS_TABLE;
-
-const AWS = require('aws-sdk');
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 const todosController = {};
 
