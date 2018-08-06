@@ -1,5 +1,7 @@
 # Serverless API for todo app
 Deploy a lambda function that running Express server.
+`serverless-http` is used to map API gateway request and response and lambda `callback` to  Express middleware.
+In other word, it allows us to write API in using `req` and `res` from Express instead of using lambda `callback` function.
 
 ## Runing locally
 

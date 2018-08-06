@@ -133,7 +133,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverless-todo/dev/1533534280526-2018-08-06T05:44:40.526Z/serverless-todo.zip"
+                "S3Key": "serverless/serverless-todo/dev/1533535557746-2018-08-06T06:05:57.746Z/serverless-todo.zip"
               },
               "FunctionName": "serverless-todo-dev-app",
               "Handler": "src/index.handler",
@@ -157,14 +157,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "AppLambdaVersionorsTxNccbHtq6OELmf5jaOHa9fD67AguC5P5JJ8JtQ": {
+          "AppLambdaVersionm8M3ApVO2TRJPMqtTDxjIDreevQIppH7prbmDZ3avcY": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "Cj6SykgM5hqFD2zGMYTS0gHRU3JZ5Z25P6SdimhcHYw="
+              "CodeSha256": "w6QzrMZ/CffaNQNF4eGhGMGHZLalykf82PA4+ta1SZE="
             }
           },
           "ApiGatewayRestApi": {
@@ -282,7 +282,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1533534280587": {
+          "ApiGatewayDeployment1533535557815": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -374,7 +374,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionorsTxNccbHtq6OELmf5jaOHa9fD67AguC5P5JJ8JtQ"
+              "Ref": "AppLambdaVersionm8M3ApVO2TRJPMqtTDxjIDreevQIppH7prbmDZ3avcY"
             }
           },
           "ServiceEndpoint": {
@@ -478,7 +478,7 @@
     "artifact": "/Users/nnattawat/Workspace/serverless/serverless-todo/.serverless/serverless-todo.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/serverless-todo/dev/1533534280526-2018-08-06T05:44:40.526Z",
+    "artifactDirectoryName": "serverless/serverless-todo/dev/1533535557746-2018-08-06T06:05:57.746Z",
     "artifact": "serverless-todo.zip"
   }
 }

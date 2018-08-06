@@ -17,7 +17,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"todoId\": \"1\", \n\t\"completed\": true,\n\t\"text\": \"Walk a dog\"\n}"
+					"raw": "{\n\t\"text\": \"Walk a dog\"\n}"
 				},
 				"url": {
 					"raw": "{{baseURL}}/todos",
@@ -56,13 +56,13 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "{{baseURL}}/todos/1",
+					"raw": "{{baseURL}}/todos/64551600-993e-11e8-8d0c-7f32752a81e6",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"todos",
-						"1"
+						"64551600-993e-11e8-8d0c-7f32752a81e6"
 					]
 				}
 			},
